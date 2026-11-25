@@ -11,6 +11,10 @@ LINE = "I've dropped a thousand snacks, but you're the first one I wanted to kee
 
 
 def main() -> None:
+    # Gate: the entry must be one line of 1-200 characters, UTF-8.
+    assert 1 <= len(LINE) <= 200, f"line is {len(LINE)} chars, must be 1-200"
+    assert "\n" not in LINE and "\r" not in LINE, "line must be a single line"
+    LINE.encode("utf-8")
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
         f.write(LINE)
